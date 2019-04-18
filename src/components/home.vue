@@ -1,6 +1,6 @@
 <template>
 <main id="main">
-  
+
   <!-- Search form -->
   <form class="">
     <div class="form-group">
@@ -33,18 +33,15 @@
         <h3 v-if="checkedSpecialisations.length > 0">Top {{ checkedSpecialisations }}s in United States</h3>
         <ul class="c-developers-list">
           <li v-for="(developer, index) in filteredDevelopers" :key="index" class="mb-3">
-            <div class="c-developer media">
+            <div class="c-developer media shadow p-3 mb-4 bg-white border rounded">
               <div class="c-developer__img mr-3">
                 <img :src="developer.photoUrl" class="img-thumbnail">
               </div>
               <div class="media-body">
                 <h3 class="c-developer__first-name">{{ developer.first_name }} {{ developer.last_name }}</h3>
-                <div class="c-developer__category text-muted">{{ developer.category }}</div>
+                <div class="c-developer__category text-muted mb-0">{{ developer.category }}</div>
                 <div class="c-developer__country">{{ developer.country }}</div>
                 <div class="c-developer__general-bio">{{ developer.generalBio }}</div>
-                <ul class="c-developer__skills">
-                  <li v-for="skill in developer.skills">{{ skill.title }}</li>
-                </ul>
               </div>
               <button type="button" class="btn btn-outline-primary" @click="goTodetail(developer.id)">View profile{{ developer.id }}</button>
             </div>
@@ -76,17 +73,17 @@ export default {
   },
   methods: {
     fetchData: function() {
-      this.$http.get('https://private-anon-490e6aa13e-toptalui.apiary-mock.com/developers').then(function(response) {
+      this.$http.get('http://private-anon-31573f97e2-toptalui.apiary-mock.com/developers').then(function(response) {
         this.developers = response.data;
       }, function(error) {
         console.log(error.statusText);
       });
-      this.$http.get('https://private-anon-490e6aa13e-toptalui.apiary-mock.com/categories/specialisations').then(function(response) {
+      this.$http.get('http://private-anon-31573f97e2-toptalui.apiary-mock.com/categories/specialisations').then(function(response) {
         this.specialisations = response.data;
       }, function(error) {
         console.log(error.statusText);
       });
-      this.$http.get('https://private-anon-490e6aa13e-toptalui.apiary-mock.com/categories/skills').then(function(response) {
+      this.$http.get('http://private-anon-31573f97e2-toptalui.apiary-mock.com/categories/skills').then(function(response) {
         this.skills = response.data;
       }, function(error) {
         console.log(error.statusText);
@@ -159,4 +156,3 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>
-<link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.css">

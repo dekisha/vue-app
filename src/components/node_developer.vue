@@ -9,7 +9,7 @@
           <ul class="c-developer__skills">
             <li v-for="skill in developer.skills">{{ skill.title }}</li>
           </ul>
-          {{ developer.category }} {{ developer.city }}, {{ developer.country }}
+          {{ developer.category }} {{ developer.city }}, <i class="fas fa-map-marker-alt mr-1"></i>{{ developer.country }}
         </div>
         <div class="media">
           <div class="c-developer__img mr-3">
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     fetchData: function() {
-      this.$http.get('https://private-anon-490e6aa13e-toptalui.apiary-mock.com/developers').then(function(response) {
+      this.$http.get('http://private-anon-31573f97e2-toptalui.apiary-mock.com/developers').then(function(response) {
         this.developers = response.data;
       }, function(error) {
         console.log(error.statusText);
