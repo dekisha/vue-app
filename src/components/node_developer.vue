@@ -1,15 +1,14 @@
 <template>
-<div class="node_developer">
-  <div class="col-md-12" v-for="developer in developers">
-    <div v-if="proId == developer.id">
-      <h1>{{developer.first_name}} {{developer.last_name}}</h1>
-      <div class="c-developer">
-        <div class="c-developer__fullname"></div>
+  <div class="node_developer">
+    <div class="col-md-12" v-for="developer in developers">
+      <div v-if="proId == developer.id" class="c-developer">
+        <h1 class="c-developer__fullname">{{developer.first_name}} {{developer.last_name}}</h1>
         <div class="c-developer__info text-muted">
           <ul class="c-developer__skills">
             <li v-for="skill in developer.skills">{{ skill.title }}</li>
           </ul>
-          {{ developer.category }} {{ developer.city }}, <i class="fas fa-map-marker-alt mr-1"></i>{{ developer.country }}
+          {{ developer.category }} {{ developer.city }}, <i class="fas fa-map-marker-alt mr-1"></i>{{ developer.country
+          }}
         </div>
         <div class="media">
           <div class="c-developer__img mr-3">
@@ -22,30 +21,34 @@
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
-export default {
-  name: 'node_developer',
-  data() {
-    return {
-      proId: this.$route.params.Pid,
-      title: 'node_developer',
-      developers: []
+  export default {
+    name: 'node_developer',
+    data() {
+      return {
+        proId: this.$route.params.Pid,
+        title: 'node_developer',
+        developers: []
+      }
+    },
+    created: function () {
+      this.fetchData();
+    },
+    methods: {
+      fetchData: function () {
+        this.$http.get('http://private-anon-31573f97e2-toptalui.apiary-mock.com/developers').then(function (response) {
+          this.developers = response.data;
+        }, function (error) {
+          console.log(error.statusText);
+        });
+      }
     }
-  },
-  created: function() {
-    this.fetchData();
-  },
-  methods: {
-    fetchData: function() {
-      this.$http.get('http://private-anon-31573f97e2-toptalui.apiary-mock.com/developers').then(function(response) {
-        this.developers = response.data;
-      }, function(error) {
-        console.log(error.statusText);
-      });
-    }
+    // computed: {
+    //   chosenDeveloper: function(){
+    //     for developer in developers
+    //   }
+    // }
   }
-}
 </script>
