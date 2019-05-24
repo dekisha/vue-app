@@ -7,8 +7,8 @@ import VueResource from 'vue-resource'
 import home from '@/components/home'
 import node_developer from '@/components/node_developer'
 
-Vue.use(Router)
-Vue.use(VueResource)
+Vue.use(Router);
+Vue.use(VueResource);
 
 export default new Router({
   routes: [

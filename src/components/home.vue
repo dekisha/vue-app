@@ -9,6 +9,7 @@
         </select>
       </div>
     </form>
+
     <div class="container-fluid">
       <div class="row">
 
@@ -16,20 +17,23 @@
           <div class="c-filters">
             <div class="c-skills shadow p-3 mb-5 bg-white rounded">
               <h3>Developer type:</h3>
-              <ul class="c-specialisations-list">
-                <li v-for="specialisation in specialisations" class="c-specialisation">
-                  <label>
-                    <input type="checkbox" v-model="checkedSpecialisations" :value="specialisation.title"/> {{
-                    specialisation.title }}
+              <ul class="c-specialisations-list row mb-0">
+                <li v-for="specialisation in specialisations" class="c-specialisation col-lg-6">
+                  <label class="mb-0">
+                    <input type="checkbox" v-model="checkedSpecialisations" :value="specialisation.title" class="align-middle" />
+                    <small>{{ specialisation.title }}</small>
                   </label>
                 </li>
               </ul>
             </div>
             <div class="c-skills shadow p-3 mb-5 bg-white rounded">
               <h3>Skills:</h3>
-              <ul class="c-skills-list">
-                <li v-for="skill in skills" class="c-skill">
-                  <label><input type="checkbox" v-model="checkedSkills" :value="skill.title"/> {{ skill.title }}</label>
+              <ul class="c-skills-list row mb-0">
+                <li v-for="skill in skills" class="c-skill col-lg-6">
+                  <label class="mb-0">
+                    <input type="checkbox" v-model="checkedSkills" :value="skill.title" class="align-middle" />
+                    <small>{{ skill.title }}</small>
+                  </label>
                 </li>
               </ul>
             </div>
@@ -53,8 +57,10 @@
                 <img :src="developer.photoUrl" class="img-thumbnail">
               </div>
               <div class="media-body">
-                <h3 class="c-developer__first-name">{{ developer.first_name }} {{ developer.last_name }}</h3>
-                <div class="c-developer__category text-muted mb-0">{{ developer.category }}</div>
+                <h4 class="c-developer__first-name mb-0">{{ developer.first_name }} {{ developer.last_name }}</h4>
+                <div class="c-developer__category text-muted mb-0">
+                  <small>{{ developer.category }}</small>
+                </div>
                 <div class="c-developer__country">{{ developer.country }}</div>
                 <div class="c-developer__general-bio">{{ developer.generalBio }}</div>
               </div>
@@ -152,9 +158,9 @@
         }
 
         // if country is chosen
-        if (this.chosenCountry != '') {
+        if (this.chosenCountry !== '') {
           filterDevelopers = filterDevelopers.filter(developer => {
-            return this.chosenCountry == developer.country;
+            return this.chosenCountry === developer.country;
           });
         }
         else {

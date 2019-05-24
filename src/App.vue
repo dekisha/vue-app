@@ -58,8 +58,8 @@
       <!-- Breadcrumbs -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Why Top 3%</a></li>
+          <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
+          <li class="breadcrumb-item"><router-link to="">Why Top 3%</router-link></li>
           <li class="breadcrumb-item active" aria-current="page">Find Developers</li>
         </ol>
       </nav>
